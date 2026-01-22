@@ -122,7 +122,9 @@ static inline bool b2ShouldShapesCollide( b2Filter filterA, b2Filter filterB )
 		return filterA.groupIndex > 0;
 	}
 
-	return ( filterA.maskBits & filterB.categoryBits ) != 0 && ( filterA.categoryBits & filterB.maskBits ) != 0;
+	bool collide = ( filterA.maskBits & filterB.categoryBits ) != 0 && ( filterA.categoryBits & filterB.maskBits ) != 0;
+	bool overlap = filterA.layerMax >= filterB.layerMin && filterA.layerMin <= filterB.layerMax;
+	return collide && overlap;
 }
 
 static inline bool b2ShouldQueryCollide( b2Filter shapeFilter, b2QueryFilter queryFilter )

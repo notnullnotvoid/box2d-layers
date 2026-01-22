@@ -305,6 +305,13 @@ typedef struct b2Filter
 	/// ragdoll self-collision. In this case you would give each ragdoll a unique negative group index
 	/// and apply that group index to all shapes on the ragdoll.
 	int groupIndex;
+
+	/// Min and max are inclusive. It's assumed that they are set correctly such that `layerMin <= layerMax`.
+	/// Shapes with non-overlapping layer ranges do not collide with each other.
+	/// Shapes whose ranges overlap collide as normal.
+	///	`int16_t` is used instead of `int` just to avoid making the `b2Filter` struct larger, not for any other reason.
+	int16_t layerMin;
+	int16_t layerMax;
 } b2Filter;
 
 /// Use this to initialize your filter

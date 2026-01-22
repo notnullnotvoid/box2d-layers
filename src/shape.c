@@ -1258,6 +1258,7 @@ void b2Shape_SetFilter( b2ShapeId shapeId, b2Filter filter )
 
 	b2Shape* shape = b2GetShape( world, shapeId );
 	if ( filter.maskBits == shape->filter.maskBits && filter.categoryBits == shape->filter.categoryBits &&
+		 filter.layerMin == shape->filter.layerMin && filter.layerMax == shape->filter.layerMax &&
 		 filter.groupIndex == shape->filter.groupIndex )
 	{
 		return;
